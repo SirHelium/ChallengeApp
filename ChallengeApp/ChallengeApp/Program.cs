@@ -1,29 +1,12 @@
-﻿using System.Globalization;
+﻿using ChallengeApp;
 
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        string numberInString = Console.ReadLine();
-        var letters = numberInString.ToArray();
-        var numbers = new int[10];
+var employee = new Employee("Adam", "Kamizelich");
+employee.AddGrade(2);
+employee.AddGrade(2);
+employee.AddGrade(6);
+var statistics = employee.GetStatistics();
+Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Average: {statistics.Average:N2}");
 
-        for(int i = 0; i < letters.Length; i++)
-        {
-            for (int j = 0; j < numbers.Length; j++)
-            {
-                if (letters[i] - 48 == j)
-                {
-                    numbers[j]++;
-                }
 
-            }
-        }
-
-        Console.WriteLine("Wyniki dla liczby " + numberInString + ":");
-        for(int i = 0;i < numbers.Length; i++)
-        {
-            Console.WriteLine($"{i} => {numbers[i]}");
-        }
-    }
-}
