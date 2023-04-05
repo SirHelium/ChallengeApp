@@ -3,44 +3,48 @@ namespace ChallengeApp
     public class Tests
     {
         [Test]
-        public void WhenTheAverageEqualZero()
+        public void WhenAddStringGrades()
         {
             var employee1 = new Employee("Piotr", "Testowski");
 
-            employee1.AddGrade(-1);
-            employee1.AddGrade(0);
-            employee1.AddGrade(1);
+            employee1.AddGrade("84");
+            employee1.AddGrade("c");
+
             var statistics = employee1.GetStatistics();
 
-            Assert.AreEqual(1, statistics.Max);
-            Assert.AreEqual(-1, statistics.Min);
-            Assert.AreEqual(0, statistics.Average);
+            Assert.AreEqual(84, statistics.Max);
+            Assert.AreEqual(60, statistics.Min);
         }
         [Test]
-        public void TestingAtStartingIndicators()
+        public void WhenAddCharGrades()
         {
             var employee1 = new Employee("Piotr", "Testowski");
 
+            employee1.AddGrade('A');
+            employee1.AddGrade('d');
+
             var statistics = employee1.GetStatistics();
 
-            // do naprawy
-            Assert.AreNotEqual(0, statistics.Max);
-            Assert.AreNotEqual(0, statistics.Min);
-            Assert.AreNotEqual(0, statistics.Average);
+            Assert.AreEqual(100, statistics.Max);
+            Assert.AreEqual(40, statistics.Min);
         }
         [Test]
-        public void Test3WhenAddingDifferentGrades()
+        public void WhenAddFloatOrDoubleOrIntGrades()
         {
             var employee1 = new Employee("Piotr", "Testowski");
 
-            employee1.AddGrade(6);
-            employee1.AddGrade(-2);
-            employee1.AddGrade(8);
+            employee1.AddGrade(10);
+            employee1.AddGrade(24.5673f);
+            employee1.AddGrade(56.56734234324);
+            employee1.AddGrade(312.234324);
+
             var statistics = employee1.GetStatistics();
 
-            Assert.AreEqual(8, statistics.Max);
-            Assert.AreEqual(-2, statistics.Min);
-            Assert.AreEqual(4, statistics.Average);
+            Assert.AreEqual(57, Math.Round(statistics.Max));
+            Assert.AreEqual(10, statistics.Min);
+            Assert.AreEqual(30, Math.Round(statistics.Average));
+            Assert.AreEqual('D', statistics.AverageLetter);
         }
+
     }
 }
