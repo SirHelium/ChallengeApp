@@ -2,15 +2,28 @@
 {
     internal class EmployeeInMemory : EmployeeBase
     {
+        public override event GradeAddedDelegate GradeAdded;
         public EmployeeInMemory(string name, string surname) : base(name, surname)
         {
         }
         private List<float> grades = new List<float>();
+        private void WriteMessageInConsole(string message)
+        {
+            Console.WriteLine(message);
+        }
+        private void WriteMessageInConsole2(string message)
+        {
+            Console.WriteLine(message.ToUpper());
+        }
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
                 grades.Add(grade);
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
