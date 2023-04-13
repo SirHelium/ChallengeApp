@@ -84,41 +84,15 @@
             var statistics = new Statistics();
             if (File.Exists(fileName))
             {
-                statistics.Average = 0;
-                statistics.Max = float.MinValue;
-                statistics.Min = float.MaxValue;
-                var count = 0;
                 using (var reader = File.OpenText(fileName))
                 {
                     var line = reader.ReadLine();
                     while (line != null)
                     {
                         var grade = float.Parse(line);
-                        statistics.Max = Math.Max(statistics.Max, grade);
-                        statistics.Min = Math.Min(statistics.Min, grade);
-                        statistics.Average += grade;
-                        count++;
+                        statistics.AddGrade(grade);
                         line = reader.ReadLine();
                     }
-                }
-                statistics.Average = statistics.Average / count;
-                switch (statistics.Average)
-                {
-                    case var average when average >= 80:
-                        statistics.AverageLetter = 'A';
-                        break;
-                    case var average when average >= 60:
-                        statistics.AverageLetter = 'B';
-                        break;
-                    case var average when average >= 40:
-                        statistics.AverageLetter = 'C';
-                        break;
-                    case var average when average >= 20:
-                        statistics.AverageLetter = 'D';
-                        break;
-                    default:
-                        statistics.AverageLetter = 'E';
-                        break;
                 }
             }
             return statistics;
