@@ -5,7 +5,7 @@ namespace ChallengeApp
         [Test]
         public void WhenAddStringGrades()
         {
-            var employee1 = new Employee("Piotr", "Testowski");
+            var employee1 = new EmployeeInMemory("Piotr", "Testowski");
 
             employee1.AddGrade("84");
             employee1.AddGrade("c");
@@ -18,7 +18,7 @@ namespace ChallengeApp
         [Test]
         public void WhenAddCharGrades()
         {
-            var employee1 = new Employee("Piotr", "Testowski");
+            var employee1 = new EmployeeInMemory("Piotr", "Testowski");
 
             employee1.AddGrade('A');
             employee1.AddGrade('d');
@@ -31,12 +31,11 @@ namespace ChallengeApp
         [Test]
         public void WhenAddFloatOrDoubleOrIntGrades()
         {
-            var employee1 = new Employee("Piotr", "Testowski");
+            var employee1 = new EmployeeInMemory("Piotr", "Testowski");
 
             employee1.AddGrade(10);
             employee1.AddGrade(24.5673f);
             employee1.AddGrade(56.56734234324);
-            employee1.AddGrade(312.234324);
 
             var statistics = employee1.GetStatistics();
 
